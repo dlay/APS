@@ -1,0 +1,26 @@
+data_path: "datasets/"
+
+seed: 42
+
+USER_ID_FIELD: user
+ITEM_ID_FIELD: item
+
+load_col:
+    inter: [user, item]
+
+train_neg_sample_args: {None}
+
+epochs: 50
+
+train_batch_size: 4096
+eval_batch_size: 8192
+
+eval_args:
+  group_by: user
+  order: RO
+  split: {'RS': [0.8, 0, 0.2]}
+  mode: full
+metrics: ['NDCG']
+topk: [10]
+valid_metric: 'NDCG@10'
+metric_decimal_place: 4
